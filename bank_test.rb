@@ -7,33 +7,40 @@ class Account
     @balance = 0
     @date = Time.now.strftime("%d/%m/%Y")
     @numb_of_calc = 0
-    @numb_of_deposits = 0
     @deposit_amount = 0
     @withdraw_amount = 0
-    @numb_of_withdrawals = 0
+    @numb_of_transactions = 0
+    @deposited = false
+    @withdrawn = false
   end
 
-  def balance
-    if @numb_of_calc >= @numb_of_deposits
+  def calculate
+    if @numb_of_calc >= @numb_of_transactions
       @balance
-    # elsif @numb_of_calc >= @numb_of_withdrawals
-    #   @balance
     else
       @numb_of_calc += 1
       calculate_balance
       @balance
     end
+
+    @deposited = false
+    @withdrawn = false
   end
 
   def deposit(deposit_amount)
-    @numb_of_deposits += 1 
-    @deposit_amount += deposit_amount
-    # p @deposit_amount
+    @deposited = true
+    @numb_of_transactions += 1 
+    @deposit_amount = deposit_amount
+    calculate
+    @deposit_amount
   end 
 
   def withdraw(withdraw_amount)
-    @numb_of_withdrawals += 1
-    @withdraw_amount += withdraw_amount
+    @withdrawn = true
+    @numb_of_transactions += 1
+    @withdraw_amount = withdraw_amount
+    calculate
+    @withdraw_amount
   end 
 
   def transaction
@@ -44,8 +51,11 @@ class Account
   private
 
   def calculate_balance 
-    @balance += @deposit_amount.to_f
-    @balance -= @withdraw_amount.to_f
+    if @deposited == true
+      @balance += @deposit_amount.to_f
+    elsif @withdrawn == true
+      @balance -= @withdraw_amount.to_f
+    end
   end
 
 end
