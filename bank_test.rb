@@ -1,6 +1,6 @@
 class Account
 
-  attr_accessor :deposit_amount, :withdraw_amount, :date, :balance
+  attr_accessor :deposit_amount, :withdraw_amount, :date, :balance, :print
   
   def initialize(name)
     @name = name
@@ -12,6 +12,7 @@ class Account
     @numb_of_transactions = 0
     @deposited = false
     @withdrawn = false
+    @print = ""
   end
 
   def calculate
@@ -44,7 +45,7 @@ class Account
   end 
 
   def transaction
-    calculate_balance
+    @print << 
     "#{@date} || #{@withdraw_amount} || #{@deposit_amount} || #{@balance}"
   end
 
