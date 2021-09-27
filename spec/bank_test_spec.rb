@@ -11,5 +11,8 @@ describe Account do
     expect(account.deposit(150)).to eq 150.00
   end
 
+  it "returns the users withdrawal amount" do
+    expect(account.withdraw(150)).to eq 150.00
+  end
 
 end

@@ -8,8 +8,12 @@ class Account
     400.00
   end
 
-  def deposit
-    150.00
+  def deposit(deposit_amount)
+    deposit_amount = 150.00
   end 
-  
+
+  def withdraw(withdraw_amount)
+    withdraw_amount = 150.00
+  end 
+
 end
