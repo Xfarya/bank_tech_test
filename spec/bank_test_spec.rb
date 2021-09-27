@@ -37,7 +37,7 @@ describe Account do
   it "prints a line of required fields" do
     account.deposit(300)
     account.withdraw(150)
-    expect(account.transaction).to eq "27/09/2021 || 150 || 300 || 150.0"
+    expect(account.transaction).to eq ["27/09/2021 || 150 || 300 || 150.0"]
   end
 
   it "should only return balance without any calculations" do
@@ -64,6 +64,14 @@ describe Account do
     account.balance
     account.withdraw(300)
     expect(account.balance).to eq 400
+  end
+
+  it "should return a receipt for multiple transactions" do
+    account.deposit(1000)
+    account.transaction
+    account.deposit(1000)
+    account.transaction
+    expect(account.print).to eq ["27/09/2021 || 0 || 1000 || 1000.0", "27/09/2021 || 0 || 1000 || 2000.0"]
   end
 
 end

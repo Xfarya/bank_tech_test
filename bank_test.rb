@@ -12,7 +12,7 @@ class Account
     @numb_of_transactions = 0
     @deposited = false
     @withdrawn = false
-    @print = ""
+    @print = []
   end
 
   def calculate
