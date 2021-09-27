@@ -1,4 +1,5 @@
 require "./bank_test.rb"
+require 'Date'
 
 describe Account do
   let(:account) { described_class.new("John") }
@@ -15,4 +16,7 @@ describe Account do
     expect(account.withdraw(150)).to eq 150.00
   end
 
+  it "returns the date today" do
+    expect(account.date).to eq Date.today
+  end
 end

@@ -16,4 +16,8 @@ class Account
     withdraw_amount = 150.00
   end 
 
+  def date
+    p Date.today
+  end
+
 end
