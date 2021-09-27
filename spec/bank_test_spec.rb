@@ -23,14 +23,12 @@ describe Account do
 
   it "returns updated balance after deposit" do
     account.deposit(150.00)
-    account.calculate_balance
     expect(account.balance).to eq 150.00
   end
 
   it "returns updated balance after withdrawal" do
     account.deposit(400.00)
     account.withdraw(150.00)
-    account.calculate_balance
     expect(account.balance).to eq 250.00
   end
 
@@ -42,9 +40,20 @@ describe Account do
 
   it "should only return balance without any calculations" do
     account.deposit(300)
-    account.calculate_balance
     account.balance
     expect(account.balance).to eq 300
+  end
 
+  it "should allow for multiple deposits" do
+    account.deposit(300)
+    account.deposit(300)
+    expect(account.balance).to eq 600
+  end
+
+  it "should allow for multiple withdrawals" do
+    account.deposit(1000)
+    account.withdrawal(300)
+    account.withdrawal(300)
+    expect(account.balance).to eq 400
   end
 end
