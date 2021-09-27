@@ -9,11 +9,15 @@ class Account
     @numb_of_calc = 0
     @numb_of_deposits = 0
     @deposit_amount = 0
+    @withdraw_amount = 0
+    @numb_of_withdrawals = 0
   end
 
   def balance
     if @numb_of_calc >= @numb_of_deposits
       @balance
+    # elsif @numb_of_calc >= @numb_of_withdrawals
+    #   @balance
     else
       @numb_of_calc += 1
       calculate_balance
@@ -22,12 +26,14 @@ class Account
   end
 
   def deposit(deposit_amount)
-    @numb_of_deposits += 1
+    @numb_of_deposits += 1 
     @deposit_amount += deposit_amount
+    # p @deposit_amount
   end 
 
   def withdraw(withdraw_amount)
-    @withdraw_amount = withdraw_amount
+    @numb_of_withdrawals += 1
+    @withdraw_amount += withdraw_amount
   end 
 
   def transaction

@@ -52,8 +52,8 @@ describe Account do
 
   it "should allow for multiple withdrawals" do
     account.deposit(1000)
-    account.withdrawal(300)
-    account.withdrawal(300)
+    account.withdraw(300)
+    account.withdraw(300)
     expect(account.balance).to eq 400
   end
 end
