@@ -1,5 +1,5 @@
 require "./bank_test.rb"
-require 'Date'
+require 'time'
 
 describe Account do
   let(:account) { described_class.new("John") }
@@ -17,6 +17,7 @@ describe Account do
   end
 
   it "returns the date today" do
-    expect(account.date).to eq Date.today
+    date = Time.now.strftime("%d/%m/%Y")
+    expect(account.date).to eq date
   end
 end

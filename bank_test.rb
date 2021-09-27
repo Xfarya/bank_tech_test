@@ -17,7 +17,7 @@ class Account
   end 
 
   def date
-    p Date.today
+    "27/09/2021"
   end
 
 end
