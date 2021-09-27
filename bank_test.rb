@@ -49,6 +49,10 @@ class Account
     "#{@date} || #{@withdraw_amount} || #{@deposit_amount} || #{@balance}"
   end
 
+  def print_receipt
+    @print.reverse
+  end
+
   private
 
   def calculate_balance 

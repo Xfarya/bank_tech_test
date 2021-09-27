@@ -74,4 +74,11 @@ describe Account do
     expect(account.print).to eq ["27/09/2021 || 0 || 1000 || 1000.0", "27/09/2021 || 0 || 1000 || 2000.0"]
   end
 
+  it "should return transactions with latest first" do
+    account.deposit(1000)
+    account.transaction
+    account.deposit(1000)
+    account.transaction
+    expect(account.print_receipt).to eq ["27/09/2021 || 0 || 1000 || 2000.0", "27/09/2021 || 0 || 1000 || 1000.0"]
+  end
 end
