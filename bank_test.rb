@@ -1,6 +1,6 @@
 class Account
 
-  attr_accessor :deposit_amount, :withdraw_amount
+  attr_accessor :deposit_amount, :withdraw_amount, :date, :balance
   
   def initialize(name)
     @name = name
@@ -8,7 +8,7 @@ class Account
     @date = Time.now.strftime("%d/%m/%Y")
   end
 
-  def balance 
+  def calculate_balance 
     @balance += @deposit_amount.to_f
     @balance -= @withdraw_amount.to_f
   end
@@ -21,12 +21,8 @@ class Account
     @withdraw_amount = withdraw_amount
   end 
 
-  def date
-    "27/09/2021"
-  end
-
   def transaction
-    balance
+    calculate_balance
     "#{@date} || #{@withdraw_amount} || #{@deposit_amount} || #{@balance}"
   end
 
