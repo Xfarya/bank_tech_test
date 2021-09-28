@@ -1,18 +1,23 @@
 class Account
 
-  attr_accessor :deposit_amount, :withdraw_amount, :date, :balance, :print
+  attr_accessor :debit, :credit, :date, :balance, :print
   
-  def initialize(name)
-    @name = name
-    @balance = 0
-    @date = Time.now.strftime("%d/%m/%Y")
-    @numb_of_calc = 0
-    @deposit_amount = 0
-    @withdraw_amount = 0
-    @numb_of_transactions = 0
+  def initialize(new_account_name, balance = 0, date = Time.now.strftime("%d/%m/%Y"), deposit_amount = 0, withdraw_amount = 0)
+    @name = new_account_name
+    puts "Hi #{@name}, your account was created!"
+    @date = date
+    @credit = withdraw_amount
+    @debit = deposit_amount
+    @balance = balance
     @deposited = false
     @withdrawn = false
-    @print = ""
+    @print = []
+
+    @numb_of_calc = 0
+   
+    @numb_of_transactions = 0
+    
+    
   end
 
   def calculate
@@ -31,45 +36,48 @@ class Account
   def deposit(deposit_amount)
     @deposited = true
     @numb_of_transactions += 1 
-    @deposit_amount = deposit_amount
+    @debit = deposit_amount
     calculate
-    @deposit_amount
+    @debit
   end 
 
   def withdraw(withdraw_amount)
     @withdrawn = true
     @numb_of_transactions += 1
-    @withdraw_amount = withdraw_amount
+    @credit = withdraw_amount
     calculate
-    @withdraw_amount
+    @credit
   end 
 
   def transaction
-    @print << "[Date: '#{@date}' || Withdraw: '#{@withdraw_amount}' || Deposit: '#{@deposit_amount}' || Balance '#{@balance}']"
+    # @print << Receipt.new(@date, @withdraw_amount, @deposit_amount, @balance)
+    @print << [ @date, @credit, @debit, @balance ]
     clear_transaction
   end
 
-  # def print_receipt
-  #   # column = "Date || Withdraw || Deposit || Balance"
-  #   receipt = @print.each do |transaction|
-  #     transaction
-  #   end
-    # p "#{column}" + '\n' + "#{receipt.to_s}"
-  # end
+  def print_receipt
+    puts @transaction = ["date  ||  credit  ||  debit  ||  balance"]
+    @table = @print.each do |d, c, deb, b|
+      puts ["#{d} || #{c} ||  #{deb}  ||  #{b}"].join('\n')
+    end
+  end
 
   private
 
   def calculate_balance 
     if @deposited == true
-      @balance += @deposit_amount.to_f
+      @balance += @debit.to_f
     elsif @withdrawn == true
-      @balance -= @withdraw_amount.to_f
+      @balance -= @credit.to_f
     end
   end
 
   def clear_transaction
-    @deposit_amount = 0
-    @withdraw_amount = 0
+    @debit = 0
+    @credit = 0
   end
+
+  
+
 
 end

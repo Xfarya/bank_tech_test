@@ -1,10 +1,10 @@
-require "./bank_test.rb"
+require './bank_test.rb'
 require 'time'
 
 describe Account do
   let(:account) { described_class.new("John") }
 
-  it "returns the users account balance" do
+  it "returns the users initial account balance" do
     expect(account.balance).to eq 0
   end
 
@@ -77,11 +77,11 @@ describe Account do
   end
 
   it "should return transactions with latest first" do
-  #   account.deposit(1000)
-  #   account.transaction
-  #   account.deposit(1000)
-  #   account.transaction
-  #   expect(account.print_receipt).to eq "[Date: '28/09/2021' || Withdraw: '0' || Deposit: '1000' || Balance '1000.0'][Date: '28/09/2021' || Withdraw: '0' || Deposit: '1000' || Balance '2000.0']"
+    account.deposit(1000)
+    account.transaction
+    account.deposit(1000)
+    account.transaction
+    expect(account.print_receipt).to eq "[Date: '28/09/2021' || Withdraw: '0' || Deposit: '1000' || Balance '1000.0'][Date: '28/09/2021' || Withdraw: '0' || Deposit: '1000' || Balance '2000.0']"
   end
 
 
@@ -89,6 +89,6 @@ describe Account do
     account.deposit(1000)
     account.withdraw(1000)
     account.transaction
-    expect(account.deposit_amount).to eq 0
+    expect(account.debit).to eq 0
   end
 end

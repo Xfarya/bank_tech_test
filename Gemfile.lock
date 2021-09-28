@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    table_print (1.5.7)
+
+PLATFORMS
+  x86_64-darwin-20
+
+DEPENDENCIES
+  table_print
+
+BUNDLED WITH
+   2.2.25
