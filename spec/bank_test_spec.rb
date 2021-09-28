@@ -28,16 +28,17 @@ describe Account do
 
   it "returns updated balance after withdrawal" do
     account.deposit(400.00)
-    p account.balance
+    # p account.balance
     account.withdraw(150.00)
-    p account.balance
+    # p account.balance
     expect(account.balance).to eq 250.00
   end
 
   it "prints a line of required fields" do
     account.deposit(300)
     account.withdraw(150)
-    expect(account.transaction).to eq ["27/09/2021 || 150 || 300 || 150.0"]
+    account.transaction
+    expect(account.print).to eq "[Date: '28/09/2021' || Withdraw: '150' || Deposit: '300' || Balance '150.0']"
   end
 
   it "should only return balance without any calculations" do
@@ -71,14 +72,23 @@ describe Account do
     account.transaction
     account.deposit(1000)
     account.transaction
-    expect(account.print).to eq ["27/09/2021 || 0 || 1000 || 1000.0", "27/09/2021 || 0 || 1000 || 2000.0"]
+    # p account.transaction
+    expect(account.print).to eq "[Date: '28/09/2021' || Withdraw: '0' || Deposit: '1000' || Balance '1000.0'][Date: '28/09/2021' || Withdraw: '0' || Deposit: '1000' || Balance '2000.0']"
   end
 
   it "should return transactions with latest first" do
+  #   account.deposit(1000)
+  #   account.transaction
+  #   account.deposit(1000)
+  #   account.transaction
+  #   expect(account.print_receipt).to eq "[Date: '28/09/2021' || Withdraw: '0' || Deposit: '1000' || Balance '1000.0'][Date: '28/09/2021' || Withdraw: '0' || Deposit: '1000' || Balance '2000.0']"
+  end
+
+
+  it "should empty deposit and withdrawal sums after transaction is printed" do
     account.deposit(1000)
+    account.withdraw(1000)
     account.transaction
-    account.deposit(1000)
-    account.transaction
-    expect(account.print_receipt).to eq ["27/09/2021 || 0 || 1000 || 2000.0", "27/09/2021 || 0 || 1000 || 1000.0"]
+    expect(account.deposit_amount).to eq 0
   end
 end

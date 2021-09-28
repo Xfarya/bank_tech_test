@@ -12,7 +12,7 @@ class Account
     @numb_of_transactions = 0
     @deposited = false
     @withdrawn = false
-    @print = []
+    @print = ""
   end
 
   def calculate
@@ -45,13 +45,17 @@ class Account
   end 
 
   def transaction
-    @print << 
-    "#{@date} || #{@withdraw_amount} || #{@deposit_amount} || #{@balance}"
+    @print << "[Date: '#{@date}' || Withdraw: '#{@withdraw_amount}' || Deposit: '#{@deposit_amount}' || Balance '#{@balance}']"
+    clear_transaction
   end
 
-  def print_receipt
-    @print.reverse
-  end
+  # def print_receipt
+  #   # column = "Date || Withdraw || Deposit || Balance"
+  #   receipt = @print.each do |transaction|
+  #     transaction
+  #   end
+    # p "#{column}" + '\n' + "#{receipt.to_s}"
+  # end
 
   private
 
@@ -61,6 +65,11 @@ class Account
     elsif @withdrawn == true
       @balance -= @withdraw_amount.to_f
     end
+  end
+
+  def clear_transaction
+    @deposit_amount = 0
+    @withdraw_amount = 0
   end
 
 end

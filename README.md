@@ -40,3 +40,9 @@ Bank
 is_money? (for withdrawal) (no floats)
 can_print? (is paper?)
 is_number? (cannot accept NaN)
+
+TODO
+
+make into columns
+look at edge cases
+refactor
