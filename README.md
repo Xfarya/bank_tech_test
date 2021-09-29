@@ -1,4 +1,4 @@
-creating a bank balance receipt - where customer can print receipt to see balance.
+Creating a bank balance receipt - where customer can print receipt to see balance.
 the receipt should have 4 columns - date, credit, debit, balance
 needs to interact with irb
 

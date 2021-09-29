@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 require './bank_test'
 require 'time'
 
@@ -20,6 +19,7 @@ describe Account do
   end
 
   context 'when user makes a request' do
+
     it 'returns updated balance after deposit' do
       account.deposit(150.00)
       expect(account.balance).to eq 150.00
