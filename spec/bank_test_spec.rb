@@ -90,5 +90,10 @@ describe Account do
       account.print_receipt
       expect(account.debit).to eq 0
     end
+
+    it "should return an error if there is not enough money to withdraw" do
+      expect{account.withdraw(150)}.to raise_error(RuntimeError, "Sorry, you do not have enough balance to withdraw at this time!")
+    end
+
   end
 end

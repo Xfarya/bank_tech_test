@@ -66,8 +66,8 @@ class Account
       @balance -= @credit.to_f
       commit_transaction
     elsif @balance <= @credit
-      puts "Sorry, you do not have enough balance to withdraw at this time!"
-      @credit = 0
+      raise "Sorry, you do not have enough balance to withdraw at this time!"
+      clear_transaction_data
     end
     clear_data
   end
