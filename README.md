@@ -43,6 +43,8 @@ is_number? (cannot accept NaN)
 
 TODO
 
-make into columns
-look at edge cases
 refactor
+need to add more edge cases
+test for reverse (more tests in general)
+write up explanation/walk through of code? (dno)
+need to update debit/credit values if more than one deposit is made before transaction is printed!

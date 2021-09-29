@@ -3,6 +3,7 @@ require 'time'
 
 describe Account do
   let(:account) { described_class.new("John") }
+  let(:date) { Time.now.strftime("%d/%m/%Y") }
 
   it "returns the users initial account balances" do
     expect(account.balance).to eq 0
@@ -11,16 +12,8 @@ describe Account do
   end
 
   it "returns the date today" do
-    date = Time.now.strftime("%d/%m/%Y")
+    # date = Time.now.strftime("%d/%m/%Y")
     expect(account.date).to eq date
-  end
-
-  it "returns the users deposit amount" do
-    expect(account.deposit(150)).to eq 150.00
-  end
-
-  it "returns the users withdrawal amount" do
-    expect(account.withdraw(150)).to eq 150.00
   end
 
   it "returns updated balance after deposit" do
@@ -40,7 +33,7 @@ describe Account do
     account.deposit(300)
     account.withdraw(150)
     account.print_receipt
-    expect(account.print).to eq [["28/09/2021", 150, 300, 150.0]]
+    expect(account.print).to eq [[date, 0, 300, 300.0], [date, 150, 0, 150.0]]
   end
 
   it "should only return balance without any calculations" do
@@ -56,8 +49,14 @@ describe Account do
 
   it "should allow for multiple withdrawals" do
     account.deposit(1000)
+    p "HIIII"
+    p account.balance
     account.withdraw(300)
+    p "HIIII"
+    p account.balance
     account.withdraw(300)
+    p "HIIII"
+    p account.balance
     expect(account.balance).to eq 400
   end
 
@@ -75,7 +74,7 @@ describe Account do
     account.deposit(1000)
     account.print_receipt
     # p account.transaction
-    expect(account.print).to eq [["28/09/2021", 0, 1000, 1000.0], ["28/09/2021", 0, 1000, 2000.0]]
+    expect(account.print).to eq [[date, 0, 1000, 1000.0], [date, 0, 1000, 2000.0]]
   end
 
   it "should return transactions with latest first" do
@@ -83,7 +82,7 @@ describe Account do
     account.print_receipt
     account.deposit(1000)
     account.print_receipt
-    expect(account.print_receipt).to eq [["28/09/2021", 0, 0, 2000.0], ["28/09/2021", 0, 1000, 2000.0], ["28/09/2021", 0, 1000, 1000.0]]
+    expect(account.print_receipt).to eq [[date, 0, 1000, 2000.0], [date, 0, 1000, 1000.0]]
   end
 
 

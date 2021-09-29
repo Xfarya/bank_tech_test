@@ -47,7 +47,7 @@ class Account
 
   def print_receipt
     # will add values to statement array, and also clear deposit/withdraw pots
-    commit_transaction
+    # commit_transaction
     # will output a table in the console
     puts @transaction_table = ["date  ||  credit  ||  debit  ||  balance"]
     @table = @print.reverse.each do |d, c, deb, b|
@@ -72,10 +72,13 @@ class Account
   def calculate_balance 
     if @deposited == true
       @balance += @debit.to_f
-    elsif @withdrawn == true && @balance > 0
+      commit_transaction
+    elsif @withdrawn == true && @balance >= @credit
       @balance -= @credit.to_f
-    elsif @balance < 0
+      commit_transaction
+    elsif @balance <= @credit
       puts "Sorry, you do not have enough balance to withdraw at this time!"
+      @credit = 0
     end
   end
 
