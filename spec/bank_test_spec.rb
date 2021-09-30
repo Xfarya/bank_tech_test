@@ -95,5 +95,9 @@ describe Account do
       expect{account.withdraw(150)}.to raise_error(RuntimeError, "Sorry, you do not have enough balance to withdraw at this time!")
     end
 
+    # it "should return an error if no number if passed for deposit/withdrawal" do
+    #    expect{account.withdraw("hello")}.to include "Sorry, you must enter a numerical value"
+    # end
+
   end
 end

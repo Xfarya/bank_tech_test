@@ -9,17 +9,19 @@ class Account
   end
 
   def deposit(deposit_amount)
+    deposit_amount.to_f
+    check_num(deposit_amount)
     deposited
     @debit = deposit_amount
     calculate_balance
-    deposit_amount
+    deposit_amount.to_f
   end 
 
   def withdraw(withdraw_amount)
     withdrawn
     @credit = withdraw_amount
     calculate_balance
-    withdraw_amount
+    withdraw_amount.to_f
   end 
 
   def print_receipt
@@ -37,7 +39,7 @@ class Account
     @deposited = false
     @withdrawn = false
   end
-
+  
   def deposited
     @deposited = true
   end

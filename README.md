@@ -1,50 +1,53 @@
-Creating a bank balance receipt - where customer can print receipt to see balance.
-the receipt should have 4 columns - date, credit, debit, balance
-needs to interact with irb
+How to run tests:
 
-when she deposits (the deposit column gets filled)
-when she withdraws - the credit column gets filled
-latest date should be at the top
+bundle install
 
-edge cases
+How to run:
 
-- floats
-- not entering a number
+irb
+require "./bank_test.rb"
+create new account - e.g. account_1 = Account.new("John")
+Deposit cash - e.g. account_1.deposit(100)
+Withdraw cash - e.g. account_1.withdraw(50.5)
+Print receipt of recent transactoins - e.g. account_1.print_receipt
 
-user stories:
+Approach - tried to keep it as simple as people
+Structure - placed main methods in public, and inner workings for methods in private
 
-As a customer
-So that I can see how much money I have
-I would like the bank to give me a balance receipt
+User stories:
 
-As a customer
+As an account holder
+So that I may be able to save my money
+I would like to be able to make deposits to my account
+(account.deposit)
 
-Input/Output
+As an account holder
+So that I may be able to access my money
+I would like to be able to make withdrawals from my account
+(account.withdraw)
 
-account1 = Account.new("name")
-account1.balance = £400
-account1.can_print?(is_paper?) = true
-account1.is_number(person1.add_money(200)) = true
-account1.not_a_float(person1.withdraw_money(150)) = true
-account1.add_money(200) = £600
-account1.withdraw_money(150) = £450
+As an account holder
+So that I may be able to see a list of my most recent transactions
+I would like to be able to print a a dated statement
+(account.print_receipt)
 
-Person
+---
 
-check_balance
-add_money (can add floats)
-withdraw_money (cannot withdraw floats)
++----------+--------------+-------+--------+---------+
+| Object - | Methods |  
++----------+--------------+-------+--------+---------+
+| Person - | ------- |
++----------+--------------+-------+--------+---------+
+| Account |create account| deposit | withdraw | display
++----------+--------------+-------+--------+---------+
 
-Bank
+---
 
-is_money? (for withdrawal) (no floats)
-can_print? (is paper?)
-is_number? (cannot accept NaN)
+Edge cases + improvements
 
-TODO
-
-refactor
-need to add more edge cases
-test for reverse (more tests in general)
-write up explanation/walk through of code? (dno)
-need to update debit/credit values if more than one deposit is made before transaction is printed!
+- if there is 0 in balance, then account holder will not be allowed to withdraw -_could*improve*_- could set a default capacity
+- floating numbers so that users can input pence also -_*could_improve*_- standardise the display to 2 decimal points
+- -_*could_improve*_- couldn't get this to work for floats - but if more time, then look at cases with no number, if deposit amount is not a number, to raise an error
+- -_*could_improve*_- make it more user friendly - perhaps using 'gets.chomp()' methods, where user can interact with program and answer questions - perhaps this is not so customer friendly at the moment.
+- -_*could_improve*_- could add limit of previous transactions (perhaps previous 5)
+- need to get better at exception handling
