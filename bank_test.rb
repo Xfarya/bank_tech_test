@@ -9,8 +9,6 @@ class Account
   end
 
   def deposit(deposit_amount)
-    deposit_amount.to_f
-    check_num(deposit_amount)
     deposited
     @debit = deposit_amount
     calculate_balance
