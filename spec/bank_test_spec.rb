@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require './bank_test'
+require './lib/bank_test'
 require 'time'
 
 describe Account do

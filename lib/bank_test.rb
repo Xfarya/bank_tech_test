@@ -1,6 +1,6 @@
 class Account
 
-  attr_reader :debit, :credit, :date, :balance, :print
+  attr_reader :debit, :credit, :date, :balance, :print, :statement
 
   def initialize(name)
     @name = name
@@ -22,9 +22,9 @@ class Account
     withdraw_amount.to_f
   end 
 
-  def print_receipt
-   print_statement
-  end
+  # def print_receipt
+  #  print_statement
+  # end
 
   private
 
@@ -46,17 +46,18 @@ class Account
     @withdrawn = true
   end
 
-   def commit_transaction
+  def commit_transaction
     @print << [ @date, @credit, @debit, @balance ]
+    @statement = StatementPrinter.new(@print)
     clear_transaction_data
   end
 
-  def print_statement
-    puts @transaction_table = ["date  ||  credit  ||  debit  ||  balance"]
-    @table = @print.reverse.each do |d, c, deb, b|
-    puts ["#{d} || #{c} ||  #{deb}  ||  #{b}"].join('\n')
-    end
-  end
+  # def print_statement
+  #   puts @transaction_table = ["date  ||  credit  ||  debit  ||  balance"]
+  #   @table = @print.reverse.each do |d, c, deb, b|
+  #   puts ["#{d} || #{c} ||  #{deb}  ||  #{b}"].join('\n')
+  #   end
+  # end
 
   def calculate_balance 
     if @deposited == true
